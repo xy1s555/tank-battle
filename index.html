@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#070b10">
+  <meta name="description" content="坦克大战 · Tank Battle —— 纯 HTML5 Canvas 编写，无需任何依赖，打开即玩。">
+  <title>坦克大战 · Tank Battle</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1016'/%3E%3Crect x='12' y='26' width='40' height='24' rx='5' fill='%23fbbf24'/%3E%3Crect x='26' y='14' width='12' height='20' rx='3' fill='%23f59e0b'/%3E%3Crect x='22' y='8' width='20' height='6' rx='3' fill='%23fde68a'/%3E%3Ccircle cx='22' cy='50' r='4' fill='%23111820'/%3E%3Ccircle cx='42' cy='50' r='4' fill='%23111820'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hud" aria-label="游戏信息">
+      <div class="stat">
+        <span class="label">SCORE · 得分</span>
+        <span class="value" id="score">000000</span>
+      </div>
+      <div class="stat">
+        <span class="label">BEST · 最高</span>
+        <span class="value" id="highscore">000000</span>
+      </div>
+      <div class="stat">
+        <span class="label">LEVEL · 关卡</span>
+        <span class="value" id="level">1 / 3</span>
+      </div>
+      <div class="stat">
+        <span class="label">ENEMY · 敌军</span>
+        <span class="value" id="enemies">8</span>
+      </div>
+    </header>
+
+    <div class="subbar">
+      <div class="chips">
+        <span class="chip" id="lives" title="剩余生命">♥ ×3</span>
+        <span class="chip" id="stars" title="火力等级">★☆☆</span>
+      </div>
+      <div class="actions">
+        <button class="ghost-btn" id="pauseBtn" type="button" title="暂停（P）">暂停</button>
+        <button class="ghost-btn" id="muteBtn" type="button" title="音效开关（M）">音效：开</button>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="game" width="416" height="416" aria-label="坦克大战游戏画面"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div class="banner" id="banner" aria-hidden="true"></div>
+      <div class="overlay visible" id="overlay" aria-live="polite">
+        <div class="panel">
+          <p class="eyebrow">HTML5 CANVAS ARCADE</p>
+          <h1 class="title">坦克大战</h1>
+          <p class="subtitle">TANK BATTLE</p>
+          <p class="tagline">守住基地，消灭所有敌军坦克。<br>三关战役，等你来战。</p>
+          <button class="btn primary" data-action="start" type="button">开始游戏</button>
+          <div class="menu-keys">
+            <span><kbd>WASD</kbd> / <kbd>方向键</kbd> 移动</span>
+            <span><kbd>空格</kbd> / <kbd>J</kbd> 射击　<kbd>P</kbd> 暂停</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="touch-controls" id="touchControls" aria-label="触屏操作">
+      <div class="dpad">
+        <button type="button" class="dpad-btn up" data-dir="up" aria-label="向上">▲</button>
+        <button type="button" class="dpad-btn left" data-dir="left" aria-label="向左">◀</button>
+        <button type="button" class="dpad-btn down" data-dir="down" aria-label="向下">▼</button>
+        <button type="button" class="dpad-btn right" data-dir="right" aria-label="向右">▶</button>
+      </div>
+      <button type="button" class="fire-btn" id="fireBtn" aria-label="发射">发射</button>
+    </div>
+
+    <footer class="foot">
+      <span><kbd>WASD</kbd> / <kbd>方向键</kbd> 移动</span>
+      <span><kbd>空格</kbd> / <kbd>J</kbd> 射击</span>
+      <span><kbd>P</kbd> 暂停</span>
+      <span><kbd>M</kbd> 静音</span>
+    </footer>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
